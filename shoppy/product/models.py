@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.core.files import File
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
