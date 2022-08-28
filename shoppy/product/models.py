@@ -1,20 +1,29 @@
-from codecs import oem_decode
-from msilib.schema import Class
-from unicodedata import category
+from django.contrib.auth.models import User
 from django.db import models
+from django.core.files import File
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
 
     class Meta:
+        verbose_name_plural = 'Categories'
         ordering = ('name',)
-
+    
     def __str__(self):
         return self.name
 
-
-Class Product(models.Model):
+class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     slug = models.SlugField()
+    description = models.TextField(blank=True, null=True)
+    price = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+    class Meta:
+        ordering = ('-created_at',)
+    
+    def __str__(self):
+        return self.name
