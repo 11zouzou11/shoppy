@@ -6,9 +6,9 @@
 <div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
     <div class="filters w-full lg:w-1/4">
         <h3 class="mb-3 text-xl">Search</h3>
-        <form action="">
+        <form action="." method="get">
             <div class="flex">
-                <input type="text" name="search" id="search" class="p-4 bg-gray-200 border-0" placeholder="search here">
+                <input type="text" name="query" id="search" class="p-4 bg-gray-200 border-0" placeholder="search here">
                 <button class="p-3"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -18,17 +18,13 @@
         <h3 class="mt-8 mb-5 text-xl">Categories</h3>
         <ul class="space-y-4">
             <li>
-                <a href="" class="text-gray-300">All Categories</a>
+                <a href="{% url 'shop' %}" class="{% if not active_category %} text-gray-300 {% else %} text-black {% endif %}">All Categories</a>
             </li>
-            <li>
-                <a href="" class="text-black">GPU's</a>
-            </li>
-            <li>
-                <a href="" class="text-black">CPU's</a>
-            </li>
-            <li>
-                <a href="" class="text-black">Power Supplies</a>
-            </li>
+            {% for category in categories %}
+                <li>
+                    <a href="{% url 'shop' %}?category={{ category.slug }}" class="{% if category.slug == active_category %} text-gray-300 {% else %} text-black {% endif %}">{{ category.name }}</a>
+                </li>
+            {% endfor %}
         </ul>
     </div>
     <div class="products w-full lg:w-3/4 -mt-4 flex items-center flex-wrap">
