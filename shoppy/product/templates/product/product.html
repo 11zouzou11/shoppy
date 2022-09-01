@@ -1,4 +1,4 @@
-product{% extends "main/base.html" %}
+{% extends "main/base.html" %}
 
 
 {% block content %}
@@ -7,12 +7,13 @@ product{% extends "main/base.html" %}
             <img src="https://images.unsplash.com/photo-1661664492721-aaba3d2510aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" alt="" class="rounded-xl">
         </div>
         <div class="info w-full lg:w-2/5 lg:p-6">
-            <h1 class="text-2xl">Product Name</h1>
+            <h1 class="text-2xl">{{ product.name }}</h1>
 
-            <p class="mt-1 text-black">19.99$</p>
+            <p class="mt-1 text-black">{{ product.get_display_price }}</p>
 
-            <p class="mt-6 text-black">joasdgihoahsdasöljdkjasdklagb</p>
-
+            {% if product.description %}
+            <p class="mt-6 text-black"> {{ product.description }}</p>
+            {% endif %}
             <a href="" class="mt-6 inline-block px-8 py-4 rounded-xl text-black">Add to cart </a>
         </div>
     </div>
