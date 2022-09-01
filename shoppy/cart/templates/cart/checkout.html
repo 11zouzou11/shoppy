@@ -14,11 +14,11 @@
                 <div class="flex space-x-6">
                     <div class="w-1/2 mb-4">
                         <label class="inline-block mb-2">First Name</label>
-                        <input type="text" name="first_name" id="first_name" class="w-full p-4 rounded-xl">
+                        <input type="text" name="first_name" id="first_name" class="w-full p-4 rounded-xl" value="{{ request.user.first_name }}">
                     </div>
                     <div class="w-1/2 mb-4">
                         <label class="inline-block mb-2">Last Name</label>
-                        <input type="text" name="last_name" id="last_name" class="w-full p-4 rounded-xl">
+                        <input type="text" name="last_name" id="last_name" class="w-full p-4 rounded-xl" value="{{ request.user.last_name }}">
                     </div>
                 </div>
                 <div class="flex space-x-6">
@@ -43,7 +43,7 @@
 
                 <div class="mb-4">
                     <label class="inline-block mb-1">Email</label>
-                    <input type="email" name="email" id="email" class="w-full p-4 rounded-xl">
+                    <input type="email" name="email" id="email" class="w-full p-4 rounded-xl" value="{{ request.user.email }}">
                 </div>
                 <div class="mb-4">
                     <label class="inline-block mb-1">Phone</label>
@@ -59,7 +59,7 @@
         <h1 class="text-xl mb-5">Summary</h1>
         <div class="mb-6 flex justify-between">
             <span>Total</span>
-            <span>1.22</span>
+            <span>$ {{ cart.get_total_cost }}</span>
         </div>
         
 
