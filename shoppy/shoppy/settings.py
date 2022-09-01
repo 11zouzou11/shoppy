@@ -15,6 +15,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_AGE = 86400
+CART_SESSION_ID = 'saved'
 
 # Application definition
 
@@ -27,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'product',
+    'cart',
 ]
 
 MIDDLEWARE = [
