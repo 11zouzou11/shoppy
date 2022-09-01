@@ -29,3 +29,10 @@ def shop(request):
 
 
     return render(request, 'main/shop.html', context)
+
+
+def signup(request):
+    return render(request, 'main/signup.html')
+
+def login(request):
+    return render(request, 'main/login.html')
