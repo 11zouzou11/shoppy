@@ -1,7 +1,10 @@
+from django.contrib.auth import login
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from product.models import Product, Category
+
+from .forms import SignUpForm
 
 def mainpage(request):
     products = Product.objects.all()[0:8]
@@ -32,7 +35,19 @@ def shop(request):
 
 
 def signup(request):
-    return render(request, 'main/signup.html')
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
 
-def login(request):
-    return render(request, 'main/login.html')
+        if form.is_valid():
+            user = form.save()
+
+            login(request, user)
+
+            return redirect('/')
+    else:
+        form = SignUpForm()
+
+    return render(request, 'main/signup.html', {'form': form})
+
+def login_(request):
+    return render(request, 'main/login.html') 
