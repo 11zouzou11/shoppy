@@ -18,7 +18,6 @@ urlpatterns = [
     path('shop/<slug:slug>', product, name='product'),
     path('cart/', cart, name='cart'),
     path('cart/checkout/', checkout, name='checkout'),
-
     path('add_to_cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
