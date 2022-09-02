@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-ng3c@+n%ygs@g-s2y4%wcfj-!_ziin=&z*6hf!7w+$i9&!9f(o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-ci-shoppy.herokuapp.com', 'localhost']
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
