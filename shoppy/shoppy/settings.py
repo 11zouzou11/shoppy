@@ -1,5 +1,6 @@
 from pathlib import Path
-
+import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'product',
     'cart',
     'order',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -82,6 +84,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -116,8 +119,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = '/media/'
+# AWS  S3 Settings
+
+AWS_ACCESS_KEY_ID ='AKIAUDXVJ5MRHQZND4U7 '
+AWS_SECRET_ACCESS_KEY ='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'
+AWS_STORAGE_BUCKET_NAME = 'django-ci-ms4'
+AWS_S3_CUSTOm_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl' : 'max-age=86400'
+}
+
+AWS_LOCATION = 'static'
+AWS_QUERYSTRING_AUTH = False
+AWS_HEADERS = {
+    'Access-Control-Allow-Origin': '*',
+}
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+STATIC_URL = f'https://{AWS_S3_CUSTOm_DOMAIN}/static/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOm_DOMAIN}/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 
