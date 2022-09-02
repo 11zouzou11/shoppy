@@ -7,24 +7,7 @@
 <div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
     <div class="products w-full lg:w-3/4">
         {% for item in cart %}
-        <div class="product mb-6 flex pr-6">
-            <a href="" class="w-1/4">
-                <img src="{{ item.product.get_thumbnail }}" alt="" class="hover:shadow-lg rounded-xl">
-            </a>
-            <div class="w-3/4 pl-6">
-                <div class="flex justify-between">
-                    <a href="" class="text-lg">{{ item.product.name }}</a>
-                    <span class="mb-6 pt-1 text-black">{{ item.total_price }}</span>
-                </div>
-                <hr>
-
-                <div class="quqntity mt-4 flex items-center space-x-4">
-                    <a href="" class="p-3">-</a>
-                    <span>{{ item.quantity }}</span>
-                    <a href="" class="p-3">+</a>
-                </div>
-            </div>
-        </div>
+            {% include 'cart/partials/cart_items.html' %}
         {% endfor %}
         
     </div>
@@ -32,7 +15,12 @@
         <h1 class="text-xl mb-5">Summary</h1>
         <div class="mb-6 flex justify-between">
             <span>Total</span>
-            <span>$ {{ cart.get_total_cost }}</span>
+            <span
+            hx-get="{% url 'hx_cart_total' %}"
+            hx-trigger="update-menu-cart form:body"
+            hx-swap="innerHTML"> 
+            {% include 'cart/partials/cart_total.html' %}
+            </span>
         </div>
         
 
