@@ -51,6 +51,10 @@ class Cart(object):
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
+    
+    def clear(self):
+        del self.session[settings.CART_SESSION_ID]
+        self.session.modified = True
 
     def get_total_cost(self):
 
@@ -61,4 +65,7 @@ class Cart(object):
         return int(sum(item['product'].price * item['quantity'] for item in self.cart.values())) /100 
 
     def get_item(self, product_id):
-        return self.cart[str(product_id)]
+        if str(product_id) in self.cart:
+            return self.cart[str(product_id)]
+        else:
+            return None
