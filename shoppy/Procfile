@@ -1,0 +1,1 @@
+web:django db upgrade; gunicorn shoppy.wsgi:application
